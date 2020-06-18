@@ -4,7 +4,7 @@ description: "A comparison of fuel prices across europe"
 layout: post
 toc: true
 comments: true
-image: images/europe-fuel-prices/choropleth_unleaded_95.png
+image: {{ site.baseurl }}/images/europe-fuel-prices/choropleth_unleaded_95.png
 hide: false
 search_exclude: false
 categories: [python, matplotlib, choropleth, basemap, pandas]
@@ -13,22 +13,22 @@ show_tags: true
 
 
 
-![Unleaded 95 Prices](images/europe-fuel-prices/choropleth_unleaded_95.png)
+![Unleaded 95 Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_unleaded_95.png)
 
-![Diesel Prices](images/europe-fuel-prices/choropleth_diesel.png)
+![Diesel Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_diesel.png)
 
-![LPG Prices](images/europe-fuel-prices/choropleth_lpg.png)
+![LPG Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_lpg.png)
 
 
 ## Including non-european countries
 
 Countries ordered from highest to lowest Unleaded 95 price. 
 
-![Unleaded 95 Prices](images/europe-fuel-prices/unleaded_95.png)
+![Unleaded 95 Prices]({{ site.baseurl }}/images/europe-fuel-prices/unleaded_95.png)
 
-![Diesel Prices](images/europe-fuel-prices/diesel.png)
+![Diesel Prices]({{ site.baseurl }}/images/europe-fuel-prices/diesel.png)
 
-![LPG Prices](images/europe-fuel-prices/lpg.png)
+![LPG Prices]({{ site.baseurl }}/images/europe-fuel-prices/lpg.png)
 
 
 ## Data
