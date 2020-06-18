@@ -5,9 +5,10 @@ layout: post
 toc: true
 comments: true
 image: images/europe-fuel-prices/choropleth_unleaded_95.png
-hide: true
+hide: false
 search_exclude: true
 categories: [python, matplotlib, choropleth, basemap, pandas]
+show_tags: true
 ---
 
 

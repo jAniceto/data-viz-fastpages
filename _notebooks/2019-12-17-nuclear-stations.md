@@ -5,9 +5,10 @@ layout: post
 toc: true
 comments: true
 image: images/nuclear-stations/world.png
-hide: true
+hide: false
 search_exclude: true
 categories: [python, matplotlib, folium, basemap]
+show_tags: true
 ---
 
 
