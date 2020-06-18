@@ -11,6 +11,28 @@
         
     
   
+    
+        ,"post1": {
+            "title": "Europe Fuel Prices",
+            "content": ". . . Including non-european countries . Countries ordered from highest to lowest Unleaded 95 price. . . . . Data . Data was collected from fuel-prices-europe.info on January 2, 2020. . Data source | . Source code . IPython notebooks with data treatment and visualizations can be found at: . Data treatment | Choropleth visualizations | Other visualizations | .",
+            "url": "https://janiceto.github.io/data-viz-fastpages/python/matplotlib/choropleth/basemap/pandas/2020/01/04/europe-fuel-prices.html",
+            "relUrl": "/python/matplotlib/choropleth/basemap/pandas/2020/01/04/europe-fuel-prices.html",
+            "date": " • Jan 4, 2020"
+        }
+        
+    
+  
+    
+        ,"post2": {
+            "title": "World Nuclear Power",
+            "content": ". Interactive version can be accessed by clicking the image above or following this link. Marker size corresponds to the station capacity. . Breakdown by region: . . . . In service stations by capacity: . . Installed capacity by country and station status: . . Data . Data was collected from Wikipedia and manually corrected when needed. . List of nuclear power stations | . Source . An IPython notebook can be found here. .",
+            "url": "https://janiceto.github.io/data-viz-fastpages/python/matplotlib/folium/basemap/2019/12/17/nuclear-stations.html",
+            "relUrl": "/python/matplotlib/folium/basemap/2019/12/17/nuclear-stations.html",
+            "date": " • Dec 17, 2019"
+        }
+        
+    
+  
 
   
   
