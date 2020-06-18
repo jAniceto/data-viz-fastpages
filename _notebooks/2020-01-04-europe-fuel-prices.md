@@ -6,7 +6,7 @@ toc: true
 comments: true
 image: images/europe-fuel-prices/choropleth_unleaded_95.png
 hide: false
-search_exclude: true
+search_exclude: false
 categories: [python, matplotlib, choropleth, basemap, pandas]
 show_tags: true
 ---

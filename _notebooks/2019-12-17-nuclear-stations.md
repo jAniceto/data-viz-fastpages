@@ -6,7 +6,7 @@ toc: true
 comments: true
 image: images/nuclear-stations/world.png
 hide: false
-search_exclude: true
+search_exclude: false
 categories: [python, matplotlib, folium, basemap]
 show_tags: true
 ---
