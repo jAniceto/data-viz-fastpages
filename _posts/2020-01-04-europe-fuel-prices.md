@@ -13,11 +13,11 @@ show_tags: true
 
 
 
-![Unleaded 95 Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_unleaded_95.png)
+![]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_unleaded_95.png "asdas")
 
-![Diesel Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_diesel.png)
+![]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_diesel.png "asdas")
 
-![LPG Prices]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_lpg.png)
+![]({{ site.baseurl }}/images/europe-fuel-prices/choropleth_lpg.png "asdas")
 
 
 ## Including non-european countries
