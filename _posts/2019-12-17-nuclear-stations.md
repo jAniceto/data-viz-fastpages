@@ -12,30 +12,30 @@ show_tags: true
 ---
 
 
-<a href="images/nuclear-stations/nuclear-stations.html" target="_blank">
-    ![Nuclear Power Stations](images/nuclear-stations/world.png)
+<a href="{{site.baseurl}}/images/nuclear-stations/nuclear-stations.html" target="_blank">
+    ![Nuclear Power Stations]({{site.baseurl}}/images/nuclear-stations/world.png)
 </a>
 
-Interactive version can be accessed by clicking the image above or following this [link](images/nuclear-stations/nuclear-stations.html). Marker size corresponds to the station capacity.
+Interactive version can be accessed by clicking the image above or following this [link]({{site.baseurl}}/images/nuclear-stations/nuclear-stations.html). Marker size corresponds to the station capacity.
 
 
 ## Breakdown by region:
 
-![Nuclear Power Stations Europe](images/nuclear-stations/europe.png)
+![Nuclear Power Stations Europe]({{site.baseurl}}/images/nuclear-stations/europe.png)
 
-![Nuclear Power Stations North America](images/nuclear-stations/north-america.png)
+![Nuclear Power Stations North America]({{site.baseurl}}/images/nuclear-stations/north-america.png)
 
-![Nuclear Power Stations SW Asia](images/nuclear-stations/sw-asia.png)
+![Nuclear Power Stations SW Asia]({{site.baseurl}}/images/nuclear-stations/sw-asia.png)
 
 
 ## In service stations by capacity:
 
-![In service stations by capacity](images/nuclear-stations/world-in-service-installed.png)
+![In service stations by capacity]({{site.baseurl}}/images/nuclear-stations/world-in-service-installed.png)
 
 
 ## Installed capacity by country and station status:
 
-![Nuclear Power Stations SW Asia](images/nuclear-stations/installed.png)
+![Nuclear Power Stations SW Asia]({{site.baseurl}}/images/nuclear-stations/installed.png)
 
 
 ## Data
