@@ -21,11 +21,11 @@ Interactive version can be accessed by clicking the image above or following thi
 
 ## Breakdown by region:
 
-![]({{ site.baseurl }}/images/nuclear-stations/europe.png)
+![Nuclear Power Stations Europe]({{ site.baseurl }}/images/nuclear-stations/europe.png)
 
-![]({{ site.baseurl }}/images/nuclear-stations/north-america.png)
+![Nuclear Power Stations North America]({{ site.baseurl }}/images/nuclear-stations/north-america.png)
 
-![]({{ site.baseurl }}/images/nuclear-stations/sw-asia.png)
+![Nuclear Power Stations SW Asia]({{ site.baseurl }}/images/nuclear-stations/sw-asia.png)
 
 
 ## In service stations by capacity:
