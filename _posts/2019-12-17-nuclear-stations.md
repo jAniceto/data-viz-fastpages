@@ -1,12 +1,12 @@
 ---
 title: "World Nuclear Power"
-description: ""
+description: "Visualizations of nuclear energy around the world"
 layout: post
 toc: true
 comments: true
 image: images/nuclear-stations/world.png
 hide: false
-search_exclude: false
+search_exclude: true
 categories: [python, matplotlib, folium, basemap]
 show_tags: true
 ---
