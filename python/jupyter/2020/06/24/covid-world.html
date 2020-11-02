@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Covid-19 World | Evidentia</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Covid-19 World" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Simple analysis of Covid-19 evolution worldwide" />
+<meta property="og:description" content="Simple analysis of Covid-19 evolution worldwide" />
+<link rel="canonical" href="https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html" />
+<meta property="og:url" content="https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html" />
+<meta property="og:site_name" content="Evidentia" />
+<meta property="og:image" content="https://janiceto.github.io/data-viz-fastpages/images/covid-portugal/covid-world.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Simple analysis of Covid-19 evolution worldwide","@type":"BlogPosting","headline":"Covid-19 World","url":"https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html","datePublished":"2020-06-24T00:00:00-05:00","dateModified":"2020-06-24T00:00:00-05:00","image":"https://janiceto.github.io/data-viz-fastpages/images/covid-portugal/covid-world.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/data-viz-fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://janiceto.github.io/data-viz-fastpages/feed.xml" title="Evidentia" /><link rel="shortcut icon" type="image/x-icon" href="/data-viz-fastpages/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Covid-19 World | Evidentia</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Covid-19 World" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Simple analysis of Covid-19 evolution worldwide" />
+<meta property="og:description" content="Simple analysis of Covid-19 evolution worldwide" />
+<link rel="canonical" href="https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html" />
+<meta property="og:url" content="https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html" />
+<meta property="og:site_name" content="Evidentia" />
+<meta property="og:image" content="https://janiceto.github.io/data-viz-fastpages/images/covid-portugal/covid-world.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Simple analysis of Covid-19 evolution worldwide","@type":"BlogPosting","headline":"Covid-19 World","url":"https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html","datePublished":"2020-06-24T00:00:00-05:00","dateModified":"2020-06-24T00:00:00-05:00","image":"https://janiceto.github.io/data-viz-fastpages/images/covid-portugal/covid-world.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://janiceto.github.io/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://janiceto.github.io/data-viz-fastpages/feed.xml" title="Evidentia" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/data-viz-fastpages/">Evidentia</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/data-viz-fastpages/about/">About Me</a><a class="page-link" href="/data-viz-fastpages/search/">Search</a><a class="page-link" href="/data-viz-fastpages/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Covid-19 World</h1><p class="page-description">Simple analysis of Covid-19 evolution worldwide</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-24T00:00:00-05:00" itemprop="datePublished">
+        Jun 24, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/data-viz-fastpages/categories/#python">python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/data-viz-fastpages/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#COVID-19-World">COVID-19 World </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Info">Info </a></li>
+<li class="toc-entry toc-h2"><a href="#Configuration-variables">Configuration variables </a></li>
+<li class="toc-entry toc-h2"><a href="#Imports">Imports </a></li>
+<li class="toc-entry toc-h2"><a href="#Load-data">Load data </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-preparation">Data preparation </a></li>
+<li class="toc-entry toc-h2"><a href="#Choropleth-map">Choropleth map </a></li>
+<li class="toc-entry toc-h2"><a href="#Scatter-plot">Scatter plot </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-06-24-covid-world.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="COVID-19-World">
+<a class="anchor" href="#COVID-19-World" aria-hidden="true"><span class="octicon octicon-link"></span></a>COVID-19 World<a class="anchor-link" href="#COVID-19-World"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="sa">f</span><span class="s2">"Last updated: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="si">:</span><span class="s2">%d %B %Y %H:%M:%S %Z</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>'Last updated: 02 November 2020 16:11:10 UTC'</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Info">
+<a class="anchor" href="#Info" aria-hidden="true"><span class="octicon octicon-link"></span></a>Info<a class="anchor-link" href="#Info"> </a>
+</h2>
+<p>Data source: <a href="https://github.com/CSSEGISandData/COVID-19">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Configuration-variables">
+<a class="anchor" href="#Configuration-variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration variables<a class="anchor-link" href="#Configuration-variables"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CONFIRMED_URL</span> <span class="o">=</span> <span class="s1">'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'</span>
+<span class="n">DEATHS_URL</span> <span class="o">=</span> <span class="s1">'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Imports">
+<a class="anchor" href="#Imports" aria-hidden="true"><span class="octicon octicon-link"></span></a>Imports<a class="anchor-link" href="#Imports"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Load-data">
+<a class="anchor" href="#Load-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load data<a class="anchor-link" href="#Load-data"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">date_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\d{1,2}/\d{1,2}/\d</span><span class="si">{2}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">reformat_dates</span><span class="p">(</span><span class="n">col_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">"""Reformat dates to the day/month/year format"""</span> 
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">date_pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">col_name</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%y"</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%d</span><span class="s2">/%m/%Y"</span><span class="p">),</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">col_name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">renamed_columns_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"Country/Region"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span>
+    <span class="s2">"Province/State"</span><span class="p">:</span> <span class="s2">"location"</span><span class="p">,</span>
+    <span class="s2">"Lat"</span><span class="p">:</span> <span class="s2">"latitude"</span><span class="p">,</span>
+    <span class="s2">"Long"</span><span class="p">:</span> <span class="s2">"longitude"</span>
+<span class="p">}</span>
+
+<span class="n">cols_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"location"</span><span class="p">,</span> <span class="s2">"latitude"</span><span class="p">,</span> <span class="s2">"longitude"</span><span class="p">]</span>
+
+<span class="n">confirmed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CONFIRMED_URL</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renamed_columns_map</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">reformat_dates</span><span class="p">)</span><span class="c1">#.drop(columns=cols_to_drop)</span>
+<span class="n">deaths_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DEATHS_URL</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renamed_columns_map</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">reformat_dates</span><span class="p">)</span><span class="c1">#.drop(columns=cols_to_drop)</span>
+<span class="n">country_codes_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"country_codes.csv"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s2">"country"</span><span class="p">,</span> <span class="s2">"alpha-3_code"</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">"country"</span><span class="p">)</span>
+
+<span class="n">confirmed_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>location</th>
+      <th>country</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>22/01/2020</th>
+      <th>23/01/2020</th>
+      <th>24/01/2020</th>
+      <th>25/01/2020</th>
+      <th>26/01/2020</th>
+      <th>27/01/2020</th>
+      <th>...</th>
+      <th>23/10/2020</th>
+      <th>24/10/2020</th>
+      <th>25/10/2020</th>
+      <th>26/10/2020</th>
+      <th>27/10/2020</th>
+      <th>28/10/2020</th>
+      <th>29/10/2020</th>
+      <th>30/10/2020</th>
+      <th>31/10/2020</th>
+      <th>01/11/2020</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>Afghanistan</td>
+      <td>33.93911</td>
+      <td>67.709953</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>40687</td>
+      <td>40768</td>
+      <td>40833</td>
+      <td>40937</td>
+      <td>41032</td>
+      <td>41145</td>
+      <td>41268</td>
+      <td>41334</td>
+      <td>41425</td>
+      <td>41501</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>41.15330</td>
+      <td>20.168300</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>18556</td>
+      <td>18858</td>
+      <td>19157</td>
+      <td>19445</td>
+      <td>19729</td>
+      <td>20040</td>
+      <td>20315</td>
+      <td>20634</td>
+      <td>20875</td>
+      <td>21202</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>Algeria</td>
+      <td>28.03390</td>
+      <td>1.659600</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>55630</td>
+      <td>55880</td>
+      <td>56143</td>
+      <td>56419</td>
+      <td>56706</td>
+      <td>57026</td>
+      <td>57332</td>
+      <td>57651</td>
+      <td>57942</td>
+      <td>58272</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>42.50630</td>
+      <td>1.521800</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>4038</td>
+      <td>4038</td>
+      <td>4038</td>
+      <td>4325</td>
+      <td>4410</td>
+      <td>4517</td>
+      <td>4567</td>
+      <td>4665</td>
+      <td>4756</td>
+      <td>4825</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>Angola</td>
+      <td>-11.20270</td>
+      <td>17.873900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8829</td>
+      <td>9026</td>
+      <td>9381</td>
+      <td>9644</td>
+      <td>9871</td>
+      <td>10074</td>
+      <td>10269</td>
+      <td>10558</td>
+      <td>10805</td>
+      <td>11035</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 289 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-preparation">
+<a class="anchor" href="#Data-preparation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data preparation<a class="anchor-link" href="#Data-preparation"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Combine the country names with the country codes (needed to plot on map)</span>
+<span class="n">geo_df</span> <span class="o">=</span> <span class="n">confirmed_df</span><span class="p">[[</span><span class="s2">"country"</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">geo_df</span> <span class="o">=</span> <span class="n">geo_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">country_codes_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"country"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"country"</span><span class="p">)</span>
+<span class="n">geo_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>alpha-3_code</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>AFG</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>ALB</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>DZA</td>
+    </tr>
+    <tr>
+      <th>Andorra</th>
+      <td>AND</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>AGO</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dates_list</span> <span class="o">=</span> <span class="n">deaths_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">"(\d</span><span class="si">{2}</span><span class="s2">/\d</span><span class="si">{2}</span><span class="s2">/\d</span><span class="si">{4}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+<span class="c1"># Create a dictionary of dataframes by date, where each df holds the daily counts of cases and deaths per country</span>
+<span class="n">cases_by_date</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates_list</span><span class="p">:</span>
+    <span class="n">confirmed_day_df</span> <span class="o">=</span> <span class="n">confirmed_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="s2">"confirmed"</span><span class="p">)</span>
+    <span class="n">deaths_day_df</span> <span class="o">=</span> <span class="n">deaths_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="s2">"deaths"</span><span class="p">)</span>
+    <span class="n">cases_df</span> <span class="o">=</span> <span class="n">confirmed_day_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">deaths_day_df</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">confirmed_df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">])</span>
+
+    <span class="n">date_df</span> <span class="o">=</span> <span class="n">geo_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cases_df</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"country"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">"confirmed"</span><span class="p">:</span> <span class="s2">"sum"</span><span class="p">,</span> <span class="s2">"deaths"</span><span class="p">:</span> <span class="s2">"sum"</span><span class="p">,</span> <span class="s2">"alpha-3_code"</span><span class="p">:</span> <span class="s2">"first"</span><span class="p">})</span>
+    
+    <span class="n">date_df</span> <span class="o">=</span> <span class="n">date_df</span><span class="p">[</span><span class="n">date_df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    
+    <span class="n">cases_by_date</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_df</span>
+    
+<span class="c1"># Example of the dataframe for each day (last day)</span>
+<span class="n">cases_by_date</span><span class="p">[</span><span class="n">dates_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>confirmed</th>
+      <th>deaths</th>
+      <th>alpha-3_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>41501</td>
+      <td>1536</td>
+      <td>AFG</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Albania</td>
+      <td>21202</td>
+      <td>518</td>
+      <td>ALB</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Algeria</td>
+      <td>58272</td>
+      <td>1973</td>
+      <td>DZA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Andorra</td>
+      <td>4825</td>
+      <td>75</td>
+      <td>AND</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>11035</td>
+      <td>286</td>
+      <td>AGO</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Choropleth-map">
+<a class="anchor" href="#Choropleth-map" aria-hidden="true"><span class="octicon octicon-link"></span></a>Choropleth map<a class="anchor-link" href="#Choropleth-map"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">frame_args</span><span class="p">(</span><span class="n">duration</span><span class="p">):</span>
+    <span class="sd">"""Helper function for producing the frames for the map animation"""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"frame"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="n">duration</span><span class="p">},</span>
+        <span class="s2">"mode"</span><span class="p">:</span> <span class="s2">"immediate"</span><span class="p">,</span>
+        <span class="s2">"fromcurrent"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"transition"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="n">duration</span><span class="p">,</span> <span class="s2">"easing"</span><span class="p">:</span> <span class="s2">"linear"</span><span class="p">},</span>
+    <span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create plotly subplot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">specs</span><span class="o">=</span><span class="p">[[{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"scattergeo"</span><span class="p">}],</span> <span class="p">[{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"xy"</span><span class="p">}]],</span> <span class="n">row_heights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+
+<span class="c1"># Set up the geo data, the slider, the play and pause buttons, and the title</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">geo</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"showcountries"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">sliders</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"active"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"steps"</span><span class="p">:</span> <span class="p">[]}]</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">updatemenus</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"buttons"</span><span class="p">,</span>
+        <span class="s2">"buttons"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"&amp;#9654;"</span><span class="p">,</span>  <span class="c1"># play symbol</span>
+                <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"animate"</span><span class="p">,</span>
+                <span class="s2">"args"</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_args</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"&amp;#9724;"</span><span class="p">,</span>
+                <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"animate"</span><span class="p">,</span>  <span class="c1"># stop symbol</span>
+                <span class="s2">"args"</span><span class="p">:</span> <span class="p">[[</span><span class="kc">None</span><span class="p">],</span> <span class="n">frame_args</span><span class="p">(</span><span class="mi">0</span><span class="p">)],</span>
+            <span class="p">},</span>
+        <span class="p">],</span>
+        <span class="s2">"showactive"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"direction"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"text"</span><span class="p">:</span> <span class="s2">"Covid-19 World"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Set up colorbar tick values, ranging from 1 to the highest number of confirmed cases for any country thus far</span>
+<span class="n">max_country_confirmed</span> <span class="o">=</span> <span class="n">cases_by_date</span><span class="p">[</span><span class="n">dates_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="s2">"confirmed"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># To account for the significant variance in number of cases, make the scale logarithmic</span>
+<span class="n">high_tick</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">max_country_confirmed</span><span class="p">)</span>
+<span class="n">low_tick</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">log_tick_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">low_tick</span><span class="p">,</span> <span class="n">high_tick</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># However, we want the labels on the scale to be the actual number of cases (i.e. not log(n_cases))</span>
+<span class="n">visual_tick_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">log_tick_values</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Explicitly set max cbar value, otherwise it might be max - 1 due to a rounding error</span>
+<span class="n">visual_tick_values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_country_confirmed</span>  
+<span class="n">visual_tick_values</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">visual_tick_values</span><span class="p">]</span>
+
+<span class="c1"># Generate line chart data as list of tuples: [(confirmed, deaths), ...]</span>
+<span class="n">cases_deaths_totals</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">"confirmed"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"uint32"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">"sum"</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">"deaths"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"uint32"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">"sum"</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">cases_by_date</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="p">]</span>
+
+<span class="n">confirmed_totals</span> <span class="o">=</span> <span class="p">[</span><span class="n">daily_total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">daily_total</span> <span class="ow">in</span> <span class="n">cases_deaths_totals</span><span class="p">]</span>
+<span class="n">deaths_totals</span> <span class="o">=</span><span class="p">[</span><span class="n">daily_total</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">daily_total</span> <span class="ow">in</span> <span class="n">cases_deaths_totals</span><span class="p">]</span>
+
+
+<span class="c1"># Generate the data for each frame</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cases_by_date</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="c1"># The Z-scale (for calculating the color for each country) needs to be logarithmic</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed_log"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">])</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">date</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;"</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;Confirmed cases: "</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:,}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;Deaths: "</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"deaths"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:,}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create the choropleth chart</span>
+    <span class="n">choro_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Choropleth</span><span class="p">(</span>
+        <span class="o">**</span><span class="p">{</span>
+            <span class="s2">"locations"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"alpha-3_code"</span><span class="p">],</span>
+            <span class="s2">"z"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed_log"</span><span class="p">],</span>
+            <span class="s2">"zmax"</span><span class="p">:</span> <span class="n">high_tick</span><span class="p">,</span>
+            <span class="s2">"zmin"</span><span class="p">:</span> <span class="n">low_tick</span><span class="p">,</span>
+            <span class="s2">"colorscale"</span><span class="p">:</span> <span class="s2">"reds"</span><span class="p">,</span>
+            <span class="s2">"colorbar"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"ticks"</span><span class="p">:</span> <span class="s2">"outside"</span><span class="p">,</span>
+                <span class="s2">"ticktext"</span><span class="p">:</span> <span class="n">visual_tick_values</span><span class="p">,</span>
+                <span class="s2">"tickmode"</span><span class="p">:</span> <span class="s2">"array"</span><span class="p">,</span>
+                <span class="s2">"tickvals"</span><span class="p">:</span> <span class="n">log_tick_values</span><span class="p">,</span>
+                <span class="s2">"title"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"text"</span><span class="p">:</span> <span class="s2">"&lt;b&gt;Confirmed Cases&lt;/b&gt;"</span><span class="p">},</span>
+                <span class="s2">"len"</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+                <span class="s2">"y"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">"yanchor"</span><span class="p">:</span> <span class="s2">"top"</span>
+            <span class="p">},</span>
+            <span class="s2">"hovertemplate"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"text"</span><span class="p">],</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+            <span class="s2">"showlegend"</span><span class="p">:</span> <span class="kc">False</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Create the confirmed cases trace</span>
+    <span class="n">confirmed_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">dates_list</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">confirmed_totals</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"markers"</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">"lines"</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"Total Confirmed Cases"</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"Red"</span><span class="p">},</span>
+        <span class="n">hovertemplate</span><span class="o">=</span><span class="s2">"%</span><span class="si">{x}</span><span class="s2">&lt;br&gt;Total confirmed cases: %</span><span class="si">{y:,}</span><span class="s2">&lt;extra&gt;&lt;/extra&gt;"</span>
+    <span class="p">)</span>
+        
+    <span class="c1"># Create the deaths trace</span>
+    <span class="n">deaths_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">dates_list</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">deaths_totals</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"markers"</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">"lines"</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"Total Deaths"</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"Black"</span><span class="p">},</span>
+        <span class="n">hovertemplate</span><span class="o">=</span><span class="s2">"%</span><span class="si">{x}</span><span class="s2">&lt;br&gt;Total deaths: %</span><span class="si">{y:,}</span><span class="s2">&lt;extra&gt;&lt;/extra&gt;"</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># The first frame is what the figure initially shows</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">choro_trace</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_traces</span><span class="p">([</span><span class="n">confirmed_trace</span><span class="p">,</span> <span class="n">deaths_trace</span><span class="p">],</span> <span class="n">rows</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1"># All the other frames are appended to the frames list and slider</span>
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span><span class="n">choro_trace</span><span class="p">,</span> <span class="n">confirmed_trace</span><span class="p">,</span> <span class="n">deaths_trace</span><span class="p">],</span> <span class="s2">"name"</span><span class="p">:</span> <span class="n">date</span><span class="p">})</span>
+
+    <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"args"</span><span class="p">:</span> <span class="p">[[</span><span class="n">date</span><span class="p">],</span> <span class="n">frame_args</span><span class="p">(</span><span class="mi">50</span><span class="p">)],</span> <span class="s2">"label"</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"animate"</span><span class="p">,})</span>
+
+<span class="c1"># Tidy up the axes and finalise the chart ready for display</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">confirmed_totals</span><span class="p">)])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">sliders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="n">steps</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">domain</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"y"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span> 
+    <span class="n">legend</span><span class="o">=</span><span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="mf">0.175</span><span class="p">,</span> <span class="s2">"yanchor"</span><span class="p">:</span> <span class="s2">"top"</span><span class="p">,</span> <span class="s2">"bgcolor"</span><span class="p">:</span> <span class="s2">"rgba(0, 0, 0, 0)"</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scatter-plot">
+<a class="anchor" href="#Scatter-plot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scatter plot<a class="anchor-link" href="#Scatter-plot"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reload data</span>
+<span class="n">confirmed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CONFIRMED_URL</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renamed_columns_map</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">reformat_dates</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"bfill"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">deaths_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DEATHS_URL</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renamed_columns_map</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">reformat_dates</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"bfill"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">geo_data_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"country"</span><span class="p">,</span> <span class="s2">"location"</span><span class="p">,</span> <span class="s2">"latitude"</span><span class="p">,</span> <span class="s2">"longitude"</span><span class="p">]</span>
+<span class="n">geo_data_df</span> <span class="o">=</span> <span class="n">confirmed_df</span><span class="p">[</span><span class="n">geo_data_cols</span><span class="p">]</span>
+<span class="n">dates_list</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">confirmed_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">"(\d</span><span class="si">{2}</span><span class="s2">/\d</span><span class="si">{2}</span><span class="s2">/\d</span><span class="si">{4}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">columns</span>
+    <span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a dictionary of dataframes by date, where each df holds the daily counts of cases and deaths per country</span>
+<span class="n">cases_by_date</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates_list</span><span class="p">:</span>
+    <span class="c1"># Get a pd.Series of all cases for the current day</span>
+    <span class="n">confirmed_day_df</span> <span class="o">=</span> <span class="n">confirmed_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="s2">"confirmed"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"uint32"</span><span class="p">)</span>
+    
+    <span class="c1"># Get a pd.Series of all deaths for the current day</span>
+    <span class="n">deaths_day_df</span> <span class="o">=</span> <span class="n">deaths_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="s2">"deaths"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"uint32"</span><span class="p">)</span>
+    
+    <span class="n">cases_df</span> <span class="o">=</span> <span class="n">confirmed_day_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">deaths_day_df</span><span class="p">)</span>  <span class="c1"># combine the cases and deaths dfs</span>
+    <span class="n">cases_df</span> <span class="o">=</span> <span class="n">geo_data_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cases_df</span><span class="p">)</span>  <span class="c1"># add in the geographical data</span>
+    <span class="n">cases_df</span> <span class="o">=</span> <span class="n">cases_df</span><span class="p">[</span><span class="n">cases_df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># get rid of any rows where there were no cases</span>
+    
+    <span class="n">cases_by_date</span><span class="p">[</span><span class="n">date</span><span class="p">]</span> <span class="o">=</span> <span class="n">cases_df</span>
+    
+<span class="c1"># Example of the dataframe for each day (last day)</span>
+<span class="n">cases_by_date</span><span class="p">[</span><span class="n">dates_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>location</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>confirmed</th>
+      <th>deaths</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Afghanistan</td>
+      <td>33.9391</td>
+      <td>67.71</td>
+      <td>41501</td>
+      <td>1536</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Albania</td>
+      <td>Albania</td>
+      <td>41.1533</td>
+      <td>20.1683</td>
+      <td>21202</td>
+      <td>518</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Algeria</td>
+      <td>Algeria</td>
+      <td>28.0339</td>
+      <td>1.6596</td>
+      <td>58272</td>
+      <td>1973</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Andorra</td>
+      <td>Andorra</td>
+      <td>42.5063</td>
+      <td>1.5218</td>
+      <td>4825</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>Angola</td>
+      <td>-11.2027</td>
+      <td>17.8739</td>
+      <td>11035</td>
+      <td>286</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate the data for each day</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">cases_by_date</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed_norm"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">date</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;"</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"country"</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;"</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"location"</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;Confirmed cases: "</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">"&lt;br&gt;Deaths: "</span>
+        <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"deaths"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+        <span class="n">go</span><span class="o">.</span><span class="n">Scattergeo</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+            <span class="n">lat</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"latitude"</span><span class="p">],</span>
+            <span class="n">lon</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"longitude"</span><span class="p">],</span>
+            <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">hovertemplate</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"text"</span><span class="p">],</span>
+            <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">"size"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed_norm"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
+                <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+                <span class="s2">"sizemode"</span><span class="p">:</span> <span class="s2">"area"</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">annotation_text_template</span> <span class="o">=</span> <span class="s2">"&lt;b&gt;Worldwide Totals&lt;/b&gt;"</span> \
+                           <span class="s2">"&lt;br&gt;</span><span class="si">{date}</span><span class="s2">&lt;br&gt;&lt;br&gt;"</span> \
+                           <span class="s2">"Confirmed cases: </span><span class="si">{confirmed:,d}</span><span class="s2">&lt;br&gt;"</span> \
+                           <span class="s2">"Deaths: </span><span class="si">{deaths:,d}</span><span class="s2">&lt;br&gt;"</span> \
+                           <span class="s2">"Mortality rate: </span><span class="si">{mortality_rate:.1%}</span><span class="s2">"</span>
+<span class="n">annotation_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"x"</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+    <span class="s2">"y"</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>
+    <span class="s2">"width"</span><span class="p">:</span> <span class="mi">175</span><span class="p">,</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span>
+    <span class="s2">"showarrow"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"text"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"valign"</span><span class="p">:</span> <span class="s2">"middle"</span><span class="p">,</span>
+    <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"bordercolor"</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"update"</span><span class="p">,</span>
+        <span class="s2">"args"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">"visible"</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">"annotations"</span><span class="p">:</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">annotation_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">))]},</span>
+        <span class="p">],</span>
+        <span class="s2">"label"</span><span class="p">:</span> <span class="n">dates_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Toggle the i'th trace and annotation box to visible</span>
+    <span class="n">step</span><span class="p">[</span><span class="s2">"args"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"visible"</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">step</span><span class="p">[</span><span class="s2">"args"</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s2">"annotations"</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">"visible"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">cases_by_date</span><span class="p">[</span><span class="n">dates_list</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="n">confirmed</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"confirmed"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">deaths</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"deaths"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">mortality_rate</span> <span class="o">=</span> <span class="n">deaths</span> <span class="o">/</span> <span class="n">confirmed</span>
+    <span class="n">step</span><span class="p">[</span><span class="s2">"args"</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s2">"annotations"</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s2">"text"</span><span class="p">]</span> <span class="o">=</span> <span class="n">annotation_text_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">dates_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">confirmed</span><span class="o">=</span><span class="n">confirmed</span><span class="p">,</span>
+        <span class="n">deaths</span><span class="o">=</span><span class="n">deaths</span><span class="p">,</span>
+        <span class="n">mortality_rate</span><span class="o">=</span><span class="n">mortality_rate</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+
+<span class="n">sliders</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">"active"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"currentvalue"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"prefix"</span><span class="p">:</span> <span class="s2">"Date: "</span><span class="p">},</span>
+        <span class="s2">"steps"</span><span class="p">:</span> <span class="n">steps</span><span class="p">,</span>
+        <span class="s2">"len"</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="s2">"x"</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">first_annotation_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">annotation_dict</span><span class="p">}</span>
+<span class="n">first_annotation_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"text"</span><span class="p">:</span> <span class="n">annotation_text_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">date</span><span class="o">=</span><span class="s2">"10/01/2020"</span><span class="p">,</span> <span class="n">confirmed</span><span class="o">=</span><span class="mi">44</span><span class="p">,</span> <span class="n">deaths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mortality_rate</span><span class="o">=</span><span class="mf">0.0227</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"text"</span><span class="p">:</span> <span class="s2">"Covid-19 Global Case Tracker"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
+    <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s2">"t"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+    <span class="n">annotations</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Annotation</span><span class="p">(</span><span class="o">**</span><span class="n">first_annotation_dict</span><span class="p">)],</span>
+    <span class="n">sliders</span><span class="o">=</span><span class="n">sliders</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># set the first data point visible</span>
+
+<span class="n">fig</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="jAniceto/data-viz-fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/data-viz-fastpages/python/jupyter/2020/06/24/covid-world.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/data-viz-fastpages/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/data-viz-fastpages/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/data-viz-fastpages/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A collection of data visualizations on several topics.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jAniceto" title="jAniceto"><svg class="svg-icon grey"><use xlink:href="/data-viz-fastpages/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
